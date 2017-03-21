@@ -1,2 +1,2 @@
 ﻿  ArcadeGames.cpp
-  ArcadeGames.vcxproj -> L:\Assassiment\AIE_ArcadeGames\ArcadeGames\Debug\ArcadeGames.exe
+l:\assassiment\aie_arcadegames\arcadegames\arcadegames\arcadegames.cpp : fatal error C1041: cannot open program database 'L:\Assassiment\AIE_ArcadeGames\ArcadeGames\ArcadeGames\Debug\vc140.pdb'; if multiple CL.EXE write to the same .PDB file, please use /FS

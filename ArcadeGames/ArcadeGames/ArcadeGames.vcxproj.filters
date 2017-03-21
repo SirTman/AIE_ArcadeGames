@@ -32,5 +32,8 @@
     <ClCompile Include="ArcadeGames.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Numguessting_game.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
