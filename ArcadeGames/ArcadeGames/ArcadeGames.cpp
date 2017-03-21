@@ -11,17 +11,17 @@ int NumberChecker(int TheNum, int TheGuess)
 {
 	if (TheNum == TheGuess)
 	{
-		std::cout << "congrats you guessed the number it was\n " << TheGuess;
+		std::cout << "\ncongrats you guessed the number it was\n " << TheGuess;
 		return true;
 	}
 	if (TheGuess < TheNum)
 	{
-		std::cout << "Higher\n";
+		std::cout << "\nHigher\n";
 		return false;
 	}
 	if (TheGuess > TheNum)
 	{
-		std::cout << "Lower\n";
+		std::cout << "\nLower\n";
 		return false;
 	}
 }
@@ -59,7 +59,7 @@ int main()
 		srand (time(NULL));
 		int NumToGuess = rand() % 100 + 1;
 		int NumGuess = 0;
-		std::cout << "DEBUG:" << NumToGuess << "\n";
+		//std::cout << "DEBUG:" << NumToGuess << "\n";
 		std::cout << "I'm thinking between 0 & 100" << "\n";
 		while (NumGuessingGame)
 		{
@@ -69,7 +69,6 @@ int main()
 			std::cout << NumGuess;
 			if (NumberChecker(NumToGuess, NumGuess) == true)
 			{
-				system("pause");
 				//std::getchar();
 				NumGuessingGame = true;
 				break;
@@ -96,6 +95,8 @@ int main()
 			std::cout << SymbolsInPlay[7].XorO << "|" << SymbolsInPlay[8].XorO << "|" << SymbolsInPlay[9].XorO << "\n";
 
 			int Num = 0;
+			int Row = 0;
+			int Collom = 0;
 			std::cin >> Num;
 			if (XTurn)
 			{
