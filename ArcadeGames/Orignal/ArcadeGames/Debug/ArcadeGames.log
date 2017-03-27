@@ -1,0 +1,5 @@
+﻿  ArcadeGames.cpp
+l:\assassiment\aie_arcadegames\arcadegames\arcadegames\arcadegames.cpp(104): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+l:\assassiment\aie_arcadegames\arcadegames\arcadegames\arcadegames.cpp(115): warning C4805: '==': unsafe mix of type 'int' and type 'bool' in operation
+l:\assassiment\aie_arcadegames\arcadegames\arcadegames\arcadegames.cpp(27): warning C4715: 'NumberChecker': not all control paths return a value
+  ArcadeGames.vcxproj -> L:\Assassiment\AIE_ArcadeGames\ArcadeGames\Debug\ArcadeGames.exe
