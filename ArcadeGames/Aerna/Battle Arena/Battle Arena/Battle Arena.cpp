@@ -1,30 +1,7 @@
-// Battle Arena.cpp : Defines the entry point for the console application.
-//
-/*
 #include <iostream>
-#include "Fighter.h"
 #include <cstdlib>
 #include <time.h>
 #include <string>
-
-
-int main()
-{
-	srand(time(NULL));
-
-	std::cout << "Welcome\n";
-	std::cout << "To fight club\n\n";
-	std::cout << "Welcome\n";
-	std::string name = "Hey";
-	return 0;
-}
-*/
-
-#include <iostream>
-#include <cstdlib>
-#include <time.h>
-#include "Battle Arena.h"
-
 
 //Prevents the Random Numbers being the same every time the program is started
 void seedRandom() {
@@ -98,7 +75,7 @@ void CallList(Enemy A[], Enemy B[], int NUM)
 			A[i].showStats();
 		}
 	}
-	
+	std::cout << "\n--------------\n";
 	//Team B
 	for (int i = 0; NUM > i; i++)
 	{
@@ -127,9 +104,9 @@ int CombatRound(Enemy A[], Enemy B[], int NUMofFighters)
 		//A Turn
 		if (A[i].m_alive == true)
 		{
-			int AAtkTar = rand() % NUMofFighters + 1;
+			int AAtkTar = rand() % NUMofFighters;
 			//Checks if target is alive
-			while (B[AAtkTar].m_alive == false);
+			while (B[AAtkTar].m_alive == false)
 			{
 				//Checks to see if there is a Target to actually attack that isn't dead
 				AAtkTar += 1;
@@ -144,16 +121,16 @@ int CombatRound(Enemy A[], Enemy B[], int NUMofFighters)
 				}
 			}
 			//The Attack
-			std::cout << A[i].m_name.c_str() << " Attacked " << B[AAtkTar].m_name.c_str() << "\n";
+			std::cout << A[i].m_name.c_str() << " Attacked " << B[AAtkTar].m_name.c_str() << "\n\n";
 			B[AAtkTar].takedamge(A[i].m_attack);
 		}
 
 		//B Turn
 		if (B[i].m_alive == true)
 		{
-			int BAtkTar = rand() % NUMofFighters + 1;
+			int BAtkTar = rand() % NUMofFighters;
 			//Checks if target is alive
-			while (A[BAtkTar].m_alive == false);
+			while (A[BAtkTar].m_alive == false)
 			{
 				//Checks to see if there is a Target to actually attack that isn't dead
 				BAtkTar += 1;
@@ -168,7 +145,7 @@ int CombatRound(Enemy A[], Enemy B[], int NUMofFighters)
 				}
 			}
 			//The Attack
-			std::cout << B[i].m_name.c_str() << " Attacked " << A[BAtkTar].m_name.c_str() << "\n";
+			std::cout << B[i].m_name.c_str() << " Attacked " << A[BAtkTar].m_name.c_str() << "\n\n";
 			A[BAtkTar].takedamge(B[i].m_attack);
 		}
 	}
@@ -177,13 +154,17 @@ int CombatRound(Enemy A[], Enemy B[], int NUMofFighters)
 	  //Checks if one side is dead
 		DeathCountor = 0;
 		//A
-		for (int i = 0; totalfighters > i; i++)
+		for (int i = 0; totalfighters >= i; i++)
 		{
 			if (DeathCountor == totalfighters)
 			{
 				system("cls");
-				std::cout << "B Team Wins";
+				CallList(A, B, NUMofFighters);
 				system("pause");
+				system("cls");
+				std::cout << "B Team Wins\n";
+				system("pause");
+				return 1;
 			}
 			if (A[i].m_alive == true)
 			{
@@ -198,13 +179,17 @@ int CombatRound(Enemy A[], Enemy B[], int NUMofFighters)
 		}
 		DeathCountor = 0;
 		//B
-		for (int i = 0; totalfighters > i; i++)
+		for (int i = 0; totalfighters >= i; i++)
 		{
 			if (DeathCountor == totalfighters)
 			{
 				system("cls");
-				std::cout << "A Team Wins";
+				CallList(A,B, NUMofFighters);
 				system("pause");
+				system("cls");
+				std::cout << "A Team Wins\n";
+				system("pause");
+				return 1;
 			}
 			if (B[i].m_alive == true)
 			{
@@ -228,15 +213,21 @@ int main()
 	int nFighter = 1; //Number of Fighters on each side
 	int userInput = 0;
 	
-	std::string TeamAname = "Bobs";
-	std::string TeamBname = "Freds";
+	std::string TeamAname;
+	std::string TeamBname;
 	
+	std::cout << "Please enter the name of the first team\n";
+	std::cin >> TeamAname;
+
+	std::cout << "\nPlease enter the name of the second team\n";
+	std::cin >> TeamAname;
 
 	bool enemiesSet = false;
+
 	do {
-		std::cout << "\nPlease enter number of enemies (min. 1, max. 10)\n";
+		std::cout << "\nPlease enter number of enemies (min. 1, max. 5)\n";
 		std::cin >> userInput;
-		if (userInput < 1 || userInput > 10) 
+		if (userInput < 1 || userInput > 5) 
 		{ 
 			std::cout << "Bad input!"; 
 		}
@@ -271,10 +262,12 @@ int main()
 	bool BattleRunning = true;
 	while (BattleRunning)
 	{
+		system("cls");
 		//List Fighters
 		CallList(teamA, teamB, nFighter);
 		system("pause");
 		int HasaSideWon = CombatRound(teamA, teamB, nFighter);
+		//If there is no one left to fight then that team wins
 		if (HasaSideWon == 1)
 		{
 			BattleRunning = false;
